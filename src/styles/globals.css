@@ -1,0 +1,136 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 220 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 47% 13%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 220 47% 13%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 45 93% 47%;
+    --primary-foreground: 220 47% 11%;
+ 
+    --secondary: 220 47% 15%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 220 47% 15%;
+    --muted-foreground: 215 20% 75%;
+ 
+    --accent: 220 47% 15%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 47% 15%;
+    --input: 220 47% 15%;
+    --ring: 45 93% 47%;
+ 
+    --radius: 0.75rem;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Futura-PT'] font-bold tracking-wide;
+  }
+}
+
+@layer components {
+  .sacred-glow {
+    @apply relative;
+  }
+  .sacred-glow::before {
+    content: "";
+    @apply absolute inset-0 bg-primary/20 blur-xl rounded-full -z-10;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+  }
+  .divine-card {
+    @apply bg-gradient-to-br from-card/80 to-card/20 backdrop-blur-sm border border-primary/20 shadow-[0_0_30px_rgba(255,215,0,0.1)];
+  }
+  .sovereign-button {
+    @apply bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium px-6 py-2 rounded-full 
+    hover:shadow-lg hover:shadow-primary/20 transition-all duration-300;
+  }
+  .celestial-input {
+    @apply bg-secondary/50 border-primary/20 focus:border-primary/50 focus:ring-primary/20 
+    placeholder:text-muted-foreground/50 rounded-lg transition-all duration-300;
+  }
+  .sacred-scroll {
+    @apply scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-secondary/20;
+  }
+  .divine-glow {
+    @apply relative overflow-hidden;
+  }
+  .divine-glow::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0;
+    animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+  .aetheric-border {
+    @apply border border-primary/20 shadow-lg shadow-primary/5;
+  }
+  .cosmic-gradient {
+    @apply bg-gradient-to-br from-secondary via-secondary/50 to-background;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary/20;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full hover:bg-primary/30 transition-colors;
+}
+
+/* Input Autofill Styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: hsl(var(--foreground));
+  -webkit-box-shadow: 0 0 0px 1000px hsl(var(--background)) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Selection Color */
+::selection {
+  @apply bg-primary/30 text-foreground;
+}
+
+/* Scroll Fade */
+.scroll-fade {
+  mask-image: linear-gradient(to bottom, 
+    transparent, 
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
